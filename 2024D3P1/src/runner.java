@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class runner {
     public static void main(String[] args) {
@@ -17,9 +18,11 @@ public class runner {
                 test = test.substring(test.indexOf(search));
                 input = test.substring(test.indexOf(search), test.indexOf(")"));
                 input = input.substring(4);
-                String[] list = input.split(",");
-                System.out.println(Arrays.toString(list));
-                sum += Integer.parseInt(list[0]) * Integer.parseInt(list[1]);
+                if (Pattern.matches("\\d+,\\d+", input)) {
+                    String[] list = input.split(",");
+                    System.out.println(Arrays.toString(list));
+                    sum += Integer.parseInt(list[0]) * Integer.parseInt(list[1]);
+                }
                 test = test.substring(test.indexOf(search)+search.length());
             }
         }
@@ -37,8 +40,7 @@ public class runner {
                     fileData.add(line);
             }
             return fileData;
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             return fileData;
         }
     }
