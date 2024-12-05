@@ -14,9 +14,8 @@ public class runner {
             String search = "mul(";
             String test = a;
             while (test.contains(search)){
-                String input;
                 test = test.substring(test.indexOf(search));
-                input = test.substring(test.indexOf(search), test.indexOf(")"));
+                String input = test.substring(test.indexOf(search), test.indexOf(")"));
                 input = input.substring(4);
                 if (Pattern.matches("\\d+,\\d+", input)) {
                     String[] list = input.split(",");
