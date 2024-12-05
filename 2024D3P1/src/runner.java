@@ -16,8 +16,7 @@ public class runner {
             while (test.contains(search)){
                 test = test.substring(test.indexOf(search));
                 String input = test.substring(test.indexOf(search), test.indexOf(")"));
-                input = input.substring(4);
-                if (Pattern.matches("\\d+,\\d+", input)) {
+                if (Pattern.matches("\\d+,\\d+", input.substring(4))) {
                     String[] list = input.split(",");
                     System.out.println(Arrays.toString(list));
                     sum += Integer.parseInt(list[0]) * Integer.parseInt(list[1]);
