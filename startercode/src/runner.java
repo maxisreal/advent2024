@@ -7,9 +7,9 @@ public class runner {
     public static void main(String[] args) {
 
         ArrayList<String> fileData = getFileData("src/input.txt");
-        System.out.println(fileData);
-        // you now have an ArrayList of Strings for each number in the file
-        // do Advent 2020 day 1!
+        int sum = 0;
+        //System.out.println(fileData);
+        
     }
 
     public static ArrayList<String> getFileData(String fileName) {
