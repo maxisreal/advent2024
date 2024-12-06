@@ -16,7 +16,7 @@ public class runner {
             while (test.contains(search)){
                 test = test.substring(test.indexOf(search));
                 String input = test.substring(test.indexOf(search), test.indexOf(")"));
-                input = input.substring(4)
+                input = input.substring(4);
                 if (Pattern.matches("\\d+,\\d+", input)) {
                     String[] list = input.split(",");
                     System.out.println(Arrays.toString(list));
