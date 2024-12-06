@@ -16,25 +16,29 @@ public class runner {
             boolean toggle = false;
             String dont = "don't()";
             String dew = "do()";
+            String input = "";
             while (test.contains(search)){
-                if (test.contains(dont) && test.indexOf(dont)<test.indexOf(search)){
+                if (test.contains(dont) && !toggle && test.indexOf(dont)<test.indexOf(search)){
                     toggle = true;
+                    System.out.println(test);
+                    System.out.println("TOGGLED OFF");
                 }
-                if (test.contains(dew) && test.indexOf(dew)>test.indexOf(search)){
+                if (test.contains(dew) && toggle && test.indexOf(dew)<test.indexOf(search)){
                     toggle = false;
+                    System.out.println(test);
+                    System.out.println("TOGGLED ON");
                 }
                 if (!toggle) {
                     test = test.substring(test.indexOf(search));
-                    String input = test.substring(test.indexOf(search), test.indexOf(")"));
-                    input = input.substring(4);
-                    if (Pattern.matches("\\d+,\\d+", input)) {
-                        String[] list = input.split(",");
+                    input = test.substring(test.indexOf(search), test.indexOf(")"));
+                    String output = input.substring(4);
+                    if (Pattern.matches("\\d+,\\d+", output)) {
+                        String[] list = output.split(",");
                         System.out.println(Arrays.toString(list));
                         sum += Integer.parseInt(list[0]) * Integer.parseInt(list[1]);
                     }
                 }
-                test = test.substring(test.indexOf(search) + search.length());
-
+                test = test.substring(test.indexOf(search) + input.length() + 1);
             }
         }
         System.out.println(sum);
