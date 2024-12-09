@@ -10,55 +10,83 @@ public class runner {
         ArrayList<String> fileData = getFileData("src/input.txt");
         int sum = 0;
         //forward & backward check
-        for (int a = 0; a<fileData.size(); a++){
-            String z = fileData.get(a);
-            while (z.contains("xmas") || z.contains("samx")){
-                sum++;
-                if (z.contains("xmas")) {
-                    z = z.substring(z.indexOf("xmas") + 3);
-                }
-                if (z.contains("samx")) {
-                    z = z.substring(z.indexOf("xmas") + 3);
-                }
-            }
-        }
-
-        //up & down check (basically im rotating the board 90 deg)
-        String[] list = new String[fileData.get(0).length()-2];
-
-        for (int a = 0; a<list.length; a++) {
-            String input = "";
-            for (int b = 0; b < fileData.size(); b++) {
-                input += fileData.get(b).substring(a, a + 1);
-            }
-            list[a] = input;
-        }
-
-
-        //forward & backward check...but for up & down (crazy)
-        for (String a : list){
-            String z = a;
-            while (z.contains("xmas") || z.contains("samx")){
-                sum++;
-                if (z.contains("xmas")) {
-                    z = z.substring(z.indexOf("xmas") + 3);
-                }
-                if (z.contains("samx")) {
-                    z = z.substring(z.indexOf("xmas") + 3);
-                }
-            }
-        }
-        //diagonals check
-        String[][] last = new String[list[0].length()][list.length];
-        for (int a = 0; a<list.length; a++){
-            last[a] = list[a].split("");
+        String[][] last = new String[fileData.size()][fileData.size()];
+        for (int a = 0; a<last.length; a++){
+            last[a] = fileData.get(a).split("");
         }
         for (String[] a : last){
-            System.out.println(Arrays.toString(a));
+            String test = Arrays.toString(a);
+            //System.out.println(Arrays.toString(a));
+            //System.out.println(test);
+            while (test.contains("xmas") || test.contains("samx")) {
+                sum++;
+                if (test.contains("xmas")) {
+                    test = test.substring(test.indexOf("xmas") + 3);
+                }
+                if (test.contains("smax")) {
+                    test = test.substring(test.indexOf("smax") + 3);
+                }
+            }
+            System.out.println(test);
         }
+        System.out.println("FIRST CHECK");
+        //up & down check
+        for (int a = 0; a<last.length; a++){
+            String test = "";
+            for (int i = 0; i<last.length; i++){
+                test += last[i][a];
+            }
+            System.out.println("FIRST CHECK");
+            while (test.contains("xmas") || test.contains("samx")) {
+                    sum++;
+                if (test.contains("xmas")) {
+                    test = test.substring(test.indexOf("xmas") + 4);
+                }
+                if (test.contains("smax")) {
+                    test = test.substring(test.indexOf("smax") + 4);
+                }
+                System.out.println(test);
+                //test = test.substring(1);
+            }
+        }
+        System.out.println("SECOND CHECK");
+        //diagonals
+        int num = 0;
+        for (int a = 0; a<140; a++){
+            String test = "";
+            for (int i = 0; i<last.length; i++){
+                test += last[num][i];
+                num++;
+            }
+            while (test.contains("xmas") || test.contains("samx")) {
+                sum++;
+                if (test.contains("xmas")) {
+                    test = test.substring(test.indexOf("xmas") + 3);
+                }
+                if (test.contains("smax")) {
+                    test = test.substring(test.indexOf("smax") + 3);
+                }
+            }
+            num -= num;
+            test = "";
+            for (int i = last.length; i>0; i--){
+                test += last[i-1-num][i];
+                num++;
+            }
+            while (test.contains("xmas") || test.contains("samx")) {
+                sum++;
+                if (test.contains("xmas")) {
+                    test = test.substring(test.indexOf("xmas") + 3);
+                }
+                if (test.contains("smax")) {
+                    test = test.substring(test.indexOf("smax") + 3);
+                }
+            }
+            num++;
+        }
+        System.out.println("THIRD CHECK");
         //https://stackoverflow.com/questions/10713327/extracting-a-list-of-all-diagonals-from-a-matrix-in-a-specific-direction
         System.out.println(sum);
-
     }
 
     public static ArrayList<String> getFileData(String fileName) {
