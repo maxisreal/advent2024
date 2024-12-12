@@ -7,13 +7,14 @@ import java.util.Scanner;
 
 public class runner {
     public static void main(String[] args) {
-
-        ArrayList<String> fileData = getFileData("src/inputtest.txt");
+        ArrayList<String> fileData = getFileData("src/input.txt");
+        ArrayList<String[]> last = new ArrayList<>();
         System.out.println(fileData);
         int sum = 0;
         //forward & backward check
         for (int a = 0; a<fileData.size(); a++){
             String test = fileData.get(a).toLowerCase();
+            last.add(test.split(""));
             sum += testxmas(test);
         }
         System.out.println("FIRST CHECK");
@@ -44,6 +45,13 @@ public class runner {
             }
             sum += testxmas(test);
         }
+        for (int i = 0; i<last.size(); i++) {
+            String test = "";
+            for (int a = 0; a + i < last.size(); a++) {
+                test += last.get(a + i)[a + i];
+            }
+            sum += testxmas(test);
+        }
         System.out.println("THIRD CHECK");
         //https://stackoverflow.com/questions/10713327/extracting-a-list-of-all-diagonals-from-a-matrix-in-a-specific-direction
         System.out.println(sum);
@@ -68,24 +76,16 @@ public class runner {
     public static int testxmas(String test){
         int a = 0;
         while (test.contains("xmas") || test.contains("samx")) {
-            a++;
             System.out.println(test);
-            if (test.contains("xmasamx")) {
-                test = test.substring(test.indexOf("xmasamx") + 7);
-                a++;
-            }
-            if (test.contains("samxmas")) {
-                test = test.substring(test.indexOf("samxmas") + 7);
-                a++;
-            }
             if (test.contains("samx")) {
-                test = test.substring(test.indexOf("samx") + 4);
+                test = test.substring(test.indexOf("samx") + 3);
+                a++;
             }
             if (test.contains("xmas")) {
-                test = test.substring(test.indexOf("xmas") + 4);
+                test = test.substring(test.indexOf("xmas") + 3);
+                a++;
             }
             System.out.println(test);
         }
         return a;
     }
-}
