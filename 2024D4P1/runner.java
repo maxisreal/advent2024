@@ -68,6 +68,10 @@ public class runner {
                 test = test.substring(test.indexOf("xmasamx") + 7);
                 a++;
             }
+            if (test.contains("samxmas")) {
+                test = test.substring(test.indexOf("samxmas") + 7);
+                a++;
+            }
             if (test.contains("samx")) {
                 test = test.substring(test.indexOf("samx") + 4);
             }
