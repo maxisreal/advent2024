@@ -40,7 +40,7 @@ public class runner {
         for (int i = 0; i<rotato.size(); i++) {
             String test = "";
             for (int a = 0; a + i < rotato.size(); a++) {
-                test += rotato.get(a)[a + i];
+                test += rotato.get(a + i)[a + i];
             }
             sum += testxmas(test);
         }
