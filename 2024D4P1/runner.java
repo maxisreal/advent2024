@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -13,26 +14,30 @@ public class runner {
         //forward & backward check
         for (int a = 0; a<fileData.size(); a++){
             String test = fileData.get(a).toLowerCase();
-            while (test.contains("xmas") || test.contains("samx")) {
-                sum++;
-                System.out.println(test);
-                if (test.contains("samx")) {
-                    test = test.substring(test.indexOf("samx") + 4);
-                }
-                if (test.contains("xmas")) {
-                    test = test.substring(test.indexOf("xmas") + 4);
-                }
-                System.out.println(test);
-            }
+            sum += testxmas(test);
         }
         System.out.println("FIRST CHECK");
         System.out.println(sum);
         //up & down check
-        
+        ArrayList<String[]> rotato = new ArrayList<>();
+        for (int a = 0; a<fileData.size(); a++){
+            String input = "";
+            for (String b : fileData){
+                input += b.substring(a, a+1);
+            }
+            rotato.add(input.toLowerCase().split(""));
+        }
+        for (int a = 0; a<rotato.size(); a++){
+            String test = "";
+            for (String q : rotato.get(a)){
+                test += q;
+            }
+            sum += testxmas(test);
+        }
         System.out.println("SECOND CHECK");
         System.out.println(sum);
         //diagonals
-
+        
         System.out.println("THIRD CHECK");
         //https://stackoverflow.com/questions/10713327/extracting-a-list-of-all-diagonals-from-a-matrix-in-a-specific-direction
         System.out.println(sum);
@@ -53,5 +58,24 @@ public class runner {
         catch (FileNotFoundException e) {
             return fileData;
         }
+    }
+    public static int testxmas(String test){
+        int a = 0;
+        while (test.contains("xmas") || test.contains("samx")) {
+            a++;
+            System.out.println(test);
+            if (test.contains("xmasamx")) {
+                test = test.substring(test.indexOf("xmasamx") + 7);
+                a++;
+            }
+            if (test.contains("samx")) {
+                test = test.substring(test.indexOf("samx") + 4);
+            }
+            if (test.contains("xmas")) {
+                test = test.substring(test.indexOf("xmas") + 4);
+            }
+            System.out.println(test);
+        }
+        return a;
     }
 }
