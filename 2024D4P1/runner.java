@@ -37,7 +37,13 @@ public class runner {
         System.out.println("SECOND CHECK");
         System.out.println(sum);
         //diagonals
-        
+        for (int i = 0; i<rotato.size(); i++) {
+            String test = "";
+            for (int a = 0; a + i < rotato.size(); a++) {
+                test += rotato.get(a)[a + i];
+            }
+            sum += testxmas(test);
+        }
         System.out.println("THIRD CHECK");
         //https://stackoverflow.com/questions/10713327/extracting-a-list-of-all-diagonals-from-a-matrix-in-a-specific-direction
         System.out.println(sum);
