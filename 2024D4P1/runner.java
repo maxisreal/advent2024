@@ -58,9 +58,24 @@ public class runner {
             for (int a = 0; a + i < rotato.size(); a++) {
                 test += rotato.get(a + i)[a];
             }
+            System.out.println(test);
             sum += testxmas(test);
         }
-        ArrayList<String[]> last = rotato;
+        ArrayList<String[]> last = new ArrayList<>();
+        for (int a = fileData.size() - 1; a >= 0; a--) {
+            String input = "";
+            for (String b : fileData) {
+                input += b.substring(a, a + 1);
+            }
+            last.add(input.toLowerCase().split(""));
+        }
+        for (int a = 0; a < last.size(); a++) {
+            for (int i = 0; i<last.get(a).length/2; i++){
+                String temp = last.get(a)[i];
+                last.get(a)[i] = last.get(a)[last.get(a).length - 1 - i];
+                last.get(a)[last.get(a).length - 1 - i] = temp;
+            }
+        }
         //test print out of rotated array
         for (int i = 0; i < last.size(); i++) {
             for (String a : last.get(i)){
@@ -74,6 +89,7 @@ public class runner {
             for (int a = 0; a + i < last.size(); a++) {
                 test += last.get(a + i)[a];
             }
+            System.out.println(test);
             sum += testxmas(test);
         }
         System.out.println("THIRD CHECK");
