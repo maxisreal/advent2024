@@ -44,7 +44,7 @@ public class runner {
         }
         System.out.println("SECOND CHECK");
         System.out.println(sum);
-        //diagonals
+        //diagonals: FROM THIS POINT FORTH GOD HATES ME
         //test print out of rotated array
         for (int i = 0; i < rotato.size(); i++) {
             for (String a : rotato.get(i)){
@@ -60,12 +60,21 @@ public class runner {
             }
             sum += testxmas(test);
         }
-        for (int i = 0; i < fileData.size(); i++) {
-            String input = "";
-            for (int a = 0; a + i < fileData.size(); a++) {
-                input += fileData.get(a + i).substring(a, a+1);
+        ArrayList<String[]> last = rotato;
+        //test print out of rotated array
+        for (int i = 0; i < last.size(); i++) {
+            for (String a : last.get(i)){
+                System.out.print(a.toUpperCase() + " ");
             }
-            sum += testxmas(input);
+            System.out.println();
+        }
+        for (int i = 0; i < last.size(); i++) {
+            //goes through ⬕ (white half)
+            String test = "";
+            for (int a = 0; a + i < last.size(); a++) {
+                test += last.get(a + i)[a];
+            }
+            sum += testxmas(test);
         }
         System.out.println("THIRD CHECK");
         //https://stackoverflow.com/questions/10713327/extracting-a-list-of-all-diagonals-from-a-matrix-in-a-specific-direction
