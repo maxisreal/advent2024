@@ -17,9 +17,8 @@ public class runner {
         }
         System.out.println("FIRST CHECK");
         System.out.println(sum);
-        //up & down check
-        ArrayList<String[]> rotato = new ArrayList<>();
         //rows to columns conversion
+        ArrayList<String[]> rotato = new ArrayList<>();
         for (int a = 0; a < fileData.size(); a++) {
             String input = "";
             for (String b : fileData) {
@@ -35,6 +34,7 @@ public class runner {
                 rotato.get(a)[rotato.get(a).length - 1 - i] = temp;
             }
         }
+        //up & down check
         for (int a = 0; a < rotato.size(); a++) {
             String test = "";
             for (String q : rotato.get(a)) {
@@ -44,34 +44,14 @@ public class runner {
         }
         System.out.println("SECOND CHECK");
         System.out.println(sum);
-        //test print out of rotated array
-        for (int i = 0; i < rotato.size(); i++) {
-            for (String a : rotato.get(i)){
-                System.out.print(a.toUpperCase() + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-        //flipping horizontally for part 3
-        for (int i = 0; i<(rotato.size()/2) - 1; i++){
-            rotato.add(rotato.remove(i));
-        }
-        //flipping it vertically, to finish rotation
-        for (int a = 0; a < rotato.size(); a++) {
-            for (int i = 0; i<rotato.get(a).length/2; i++){
-                String temp = rotato.get(a)[i];
-                rotato.get(a)[i] = rotato.get(a)[rotato.get(a).length - 1 - i];
-                rotato.get(a)[rotato.get(a).length - 1 - i] = temp;
-            }
-        }
-        //test print out of rotated array
-        for (int i = 0; i < rotato.size(); i++) {
-            for (String a : rotato.get(i)){
-                System.out.print(a.toUpperCase() + " ");
-            }
-            System.out.println();
-        }
         //diagonals
+        //test print out of rotated array
+        for (int i = 0; i < rotato.size(); i++) {
+            for (String a : rotato.get(i)){
+                System.out.print(a.toUpperCase() + " ");
+            }
+            System.out.println();
+        }
         for (int i = 0; i < rotato.size(); i++) {
             //goes through ⬕ (white half)
             String test = "";
@@ -80,10 +60,10 @@ public class runner {
             }
             sum += testxmas(test);
         }
-        for (int a = 0; a < fileData.size(); a++) {
+        for (int i = 0; i < fileData.size(); i++) {
             String input = "";
-            for (String b : fileData) {
-                input += b.substring(a, a + 1);
+            for (int a = 0; a + i < fileData.size(); a++) {
+                input += fileData.get(a + i).substring(a, a+1);
             }
             sum += testxmas(input);
         }
