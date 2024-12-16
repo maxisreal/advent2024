@@ -49,6 +49,8 @@ public class runner {
             }
             System.out.println("VALID 1st time: " + valid);
             if (!valid) {
+                inc = false;
+                dec = false;
                 for (int q = 0; q < nums.get(i).length; q++) {
                     int[] arr2 = remove(nums.get(i), q);
                     for (int a = 1; a < arr2.length; a++) {
