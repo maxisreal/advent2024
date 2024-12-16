@@ -92,6 +92,8 @@ public class runner {
             System.out.println(test);
             sum += testxmas(test);
         }
+        //TODO: ADD SOME SHIT HERE
+        //https://www.geeksforgeeks.org/rotate-matrix-by-45-degrees/
         System.out.println("THIRD CHECK");
         //https://stackoverflow.com/questions/10713327/extracting-a-list-of-all-diagonals-from-a-matrix-in-a-specific-direction
         System.out.println(sum);
