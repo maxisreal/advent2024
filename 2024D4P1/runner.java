@@ -115,8 +115,8 @@ public class runner {
 
     public static int testxmas(String test) {
         int a = 0;
+        System.out.println(test);
         while (test.contains("xmas") || test.contains("samx")) {
-            System.out.println(test);
             if (test.indexOf("xmas") < test.indexOf("samx")) {
                 if (test.contains("xmas")) {
                     test = test.substring(test.indexOf("xmas") + 3);
