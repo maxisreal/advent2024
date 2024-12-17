@@ -28,7 +28,7 @@ public class runner {
         }
         //flipping it vertically, to finish rotation
         for (int a = 0; a < rotato.size(); a++) {
-            for (int i = 0; i<rotato.get(a).length/2; i++){
+            for (int i = 0; i < rotato.get(a).length / 2; i++) {
                 String temp = rotato.get(a)[i];
                 rotato.get(a)[i] = rotato.get(a)[rotato.get(a).length - 1 - i];
                 rotato.get(a)[rotato.get(a).length - 1 - i] = temp;
@@ -45,6 +45,23 @@ public class runner {
         System.out.println("SECOND CHECK");
         System.out.println(sum);
         //diagonals: FROM THIS POINT FORTH GOD HATES ME
+        //test print out of starter array
+        for (String a : fileData) {
+            String[] arr = a.split("");
+            for (String b : arr){
+                System.out.print(b + " ");
+            }
+            System.out.println();
+        }
+        for (int i = 0; i < fileData.size(); i++) {
+            //goes through ⬕ (white half on darkmode, black half normally)
+            String test = "";
+            for (int a = 0; a + i < fileData.size(); a++) {
+                test += fileData.get(a + i).substring(a, a+1);
+            }
+            System.out.println(test);
+            sum += testxmas(test.toLowerCase());
+        }
         //test print out of rotated array
         for (int i = 0; i < rotato.size(); i++) {
             for (String a : rotato.get(i)){
@@ -53,7 +70,7 @@ public class runner {
             System.out.println();
         }
         for (int i = 0; i < rotato.size(); i++) {
-            //goes through ⬕ (white half)
+            //goes through ⬕ (white half on darkmode, black half normally)
             String test = "";
             for (int a = 0; a + i < rotato.size(); a++) {
                 test += rotato.get(a + i)[a];
@@ -61,33 +78,11 @@ public class runner {
             System.out.println(test);
             sum += testxmas(test);
         }
-        ArrayList<String[]> last = new ArrayList<>();
-        for (int a = fileData.size() - 1; a >= 0; a--) {
-            String input = "";
-            for (String b : fileData) {
-                input += b.substring(a, a + 1);
-            }
-            last.add(input.toLowerCase().split(""));
-        }
-        for (int a = 0; a < last.size(); a++) {
-            for (int i = 0; i<last.get(a).length/2; i++){
-                String temp = last.get(a)[i];
-                last.get(a)[i] = last.get(a)[last.get(a).length - 1 - i];
-                last.get(a)[last.get(a).length - 1 - i] = temp;
-            }
-        }
-        //test print out of rotated array
-        for (int i = 0; i < last.size(); i++) {
-            for (String a : last.get(i)){
-                System.out.print(a.toUpperCase() + " ");
-            }
-            System.out.println();
-        }
-        for (int i = 0; i < last.size(); i++) {
-            //goes through ⬕ (white half)
+        for (int i = 0; i < rotato.size(); i++) {
+            //goes through ◪ (white half on darkmode, black half normally)
             String test = "";
-            for (int a = 0; a + i < last.size(); a++) {
-                test += last.get(a + i)[a];
+            for (int a = 0; a + i < rotato.size(); a++) {
+                test += rotato.get(a+i)[rotato.size()-a-1];
             }
             System.out.println(test);
             sum += testxmas(test);
@@ -114,6 +109,20 @@ public class runner {
         } catch (FileNotFoundException e) {
             return fileData;
         }
+    }
+
+    public static int finddiag(ArrayList<String[]> rotato){
+        int b = 0;
+        for (int i = 0; i < rotato.size(); i++) {
+            //goes through ⬕ (white half)
+            String test = "";
+            for (int a = 0; a + i < rotato.size(); a++) {
+                test += rotato.get(a + i)[a];
+            }
+            System.out.println(test);
+            b += testxmas(test);
+        }
+        return b;
     }
 
     public static int testxmas(String test) {
