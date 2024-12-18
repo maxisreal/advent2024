@@ -76,7 +76,6 @@ public class runner {
             for (int a = 0; a + i < rotato.size(); a++) {
                 test += rotato.get(a + i)[a];
             }
-            System.out.println(test);
             sum += testxmas(test);
         }
         System.out.print("INCLUDED: ");
@@ -86,7 +85,6 @@ public class runner {
             for (int a = 0; a + i < rotato.size(); a++) {
                 test += rotato.get(a+i)[rotato.size()-a-1];
             }
-            System.out.println(test);
             sum += testxmas(test);
         }
         //flip it to get the other diagonals
@@ -111,7 +109,6 @@ public class runner {
             for (int a = 0; a + i < rotato.size(); a++) {
                 test += rotato.get(a + i)[a];
             }
-            System.out.println(test);
             sum += testxmas(test);
         }
         System.out.print("NOT INCLUDED: ");
@@ -125,7 +122,6 @@ public class runner {
             for (int a = 0; a + i < rotato.size(); a++) {
                 test += rotato.get(a+i)[rotato.size()-a-1];
             }
-            System.out.println(test);
             sum += testxmas(test);
         }
         //TODO: ADD SOME SHIT HERE
@@ -168,28 +164,30 @@ public class runner {
 
     public static int testxmas(String test) {
         int a = 0;
-        System.out.println(test);
-        while (test.contains("xmas") || test.contains("samx")) {
-            if (test.indexOf("xmas") < test.indexOf("samx")) {
-                if (test.contains("xmas")) {
-                    test = test.substring(test.indexOf("xmas") + 3);
-                    a++;
-                }
-                if (test.contains("samx")) {
-                    test = test.substring(test.indexOf("samx") + 3);
-                    a++;
-                }
-            } else {
-                if (test.contains("samx")) {
-                    test = test.substring(test.indexOf("samx") + 3);
-                    a++;
-                }
-                if (test.contains("xmas")) {
-                    test = test.substring(test.indexOf("xmas") + 3);
-                    a++;
-                }
+        if (test.length() < 4){
+            //nothing
+        } else if (test.length() == 4){
+            if (test.equals("xmas")){
+                a++;
             }
+            if (test.equals("samx")){
+                a++;
+            }
+        } else {
+            String tezt = test;
             System.out.println(test);
+            System.out.println("TESTING XMAS");
+            while (test.contains("xmas")) {
+                test = test.substring(test.indexOf("xmas") + 4);
+                a++;
+                System.out.println(test);
+            }
+            System.out.println("TESTING XMAS BACKWARDS");
+            while (tezt.contains("samx")) {
+                tezt = tezt.substring(tezt.indexOf("samx") + 4);
+                a++;
+                System.out.println(tezt);
+            }
         }
         return a;
     }
