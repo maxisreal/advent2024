@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class runner {
     public static void main(String[] args) {
-        ArrayList<String> fileData = getFileData("src/inputtest.txt");
+        ArrayList<String> fileData = getFileData("src/input.txt");
         System.out.println(fileData);
         int sum = 0;
         //forward & backward check
@@ -46,22 +46,22 @@ public class runner {
         System.out.println(sum);
         //diagonals: FROM THIS POINT FORTH GOD HATES ME
         //test print out of starter array
-        for (String a : fileData) {
-            String[] arr = a.split("");
-            for (String b : arr){
-                System.out.print(b + " ");
-            }
-            System.out.println();
-        }
-        for (int i = 0; i < fileData.size(); i++) {
-            //goes through ⬕ (white half on darkmode, black half normally)
-            String test = "";
-            for (int a = 0; a + i < fileData.size(); a++) {
-                test += fileData.get(a + i).substring(a, a+1);
-            }
-            System.out.println(test);
-            sum += testxmas(test.toLowerCase());
-        }
+//        for (String a : fileData) {
+//            String[] arr = a.split("");
+//            for (String b : arr){
+//                System.out.print(b + " ");
+//            }
+//            System.out.println();
+//        }
+//        for (int i = 0; i < fileData.size(); i++) {
+//            //goes through ⬕ (white half on darkmode, black half normally)
+//            String test = "";
+//            for (int a = 0; a + i < fileData.size(); a++) {
+//                test += fileData.get(a + i).substring(a, a+1);
+//            }
+//            System.out.println(test);
+//            sum += testxmas(test.toLowerCase());
+//        }
         //test print out of rotated array
         for (int i = 0; i < rotato.size(); i++) {
             for (String a : rotato.get(i)){
@@ -69,6 +69,7 @@ public class runner {
             }
             System.out.println();
         }
+        System.out.print("INCLUDED: ");
         for (int i = 0; i < rotato.size(); i++) {
             //goes through ⬕ (white half on darkmode, black half normally)
             String test = "";
@@ -78,7 +79,47 @@ public class runner {
             System.out.println(test);
             sum += testxmas(test);
         }
+        System.out.print("INCLUDED: ");
         for (int i = 0; i < rotato.size(); i++) {
+            //goes through ◪ (white half on darkmode, black half normally)
+            String test = "";
+            for (int a = 0; a + i < rotato.size(); a++) {
+                test += rotato.get(a+i)[rotato.size()-a-1];
+            }
+            System.out.println(test);
+            sum += testxmas(test);
+        }
+        //flip it to get the other diagonals
+        for (int i = 0; i < rotato.size()/2; i++){
+            rotato.set(i, rotato.set(rotato.size()-1-i, rotato.get(i)));
+        }
+        //test print out of rotated array
+        for (int i = 0; i < rotato.size(); i++) {
+            for (String a : rotato.get(i)){
+                System.out.print(a.toUpperCase() + " ");
+            }
+            System.out.println();
+        }
+        System.out.print("NOT INCLUDED: ");
+        for (int a = 0; a < rotato.size(); a++) {
+            System.out.print(rotato.get(a)[a]);
+        }
+        System.out.println();
+        for (int i = 1; i < rotato.size(); i++) {
+            //goes through ⬕ (white half on darkmode, black half normally)
+            String test = "";
+            for (int a = 0; a + i < rotato.size(); a++) {
+                test += rotato.get(a + i)[a];
+            }
+            System.out.println(test);
+            sum += testxmas(test);
+        }
+        System.out.print("NOT INCLUDED: ");
+        for (int a = 0; a < rotato.size(); a++) {
+            System.out.print(rotato.get(a)[rotato.size()-a-1]);
+        }
+        System.out.println();
+        for (int i = 1; i < rotato.size(); i++) {
             //goes through ◪ (white half on darkmode, black half normally)
             String test = "";
             for (int a = 0; a + i < rotato.size(); a++) {
