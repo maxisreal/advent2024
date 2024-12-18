@@ -12,7 +12,7 @@ public class runner {
         ArrayList<String[]> pages = new ArrayList<>();
         for (int i = 0; i<fileData.size(); i++){
             if (Pattern.matches("\\d+\\|\\d+", fileData.get(i))){
-                rules.add(fileData.remove(i));
+                rules.add(fileData.remove(i).split("\\|"));
                 i--;
             }
         }
