@@ -9,11 +9,15 @@ public class runner {
 
         ArrayList<String> fileData = getFileData("src/input.txt");
         ArrayList<String> rules = new ArrayList<>();
+        ArrayList<String[]> pages = new ArrayList<>();
         for (int i = 0; i<fileData.size(); i++){
             if (Pattern.matches("\\d+\\|\\d+", fileData.get(i))){
                 rules.add(fileData.remove(i));
                 i--;
             }
+        }
+        for (int i = 0; i<fileData.size(); i++){
+            pages.add(fileData.get(i).split(","));
         }
         int sum = 0;
         System.out.println(rules);
