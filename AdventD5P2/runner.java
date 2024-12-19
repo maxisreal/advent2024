@@ -62,24 +62,35 @@ public class runner {
         //test printout
         for (ArrayList<String> a : pages){
             System.out.println(a);
-            System.out.println(a.size());
         }
         for (int i = 0; i<pages.size(); i++) {
             ArrayList<String> arr = pages.get(i);
+            ArrayList<String[]> drules = new ArrayList<>();
             for (int a = 0; a < rules.size(); a++) {
                 String[] rule = rules.get(a);
                 if (arr.contains(rule[0]) && arr.contains(rule[1])) {
+                    System.out.println(rule[0] + "|" + rule[1]);
                     System.out.println(arr);
-                    if (arr.indexOf(rule[0]) > arr.indexOf(rule[1])) {
-                        Collections.swap(arr, arr.indexOf(rule[0]), arr.indexOf(rule[1]));
-                    }
-                    System.out.println(arr);
+                    drules.add(rule);
+                    System.out.println("RULE ADDED");
                 }
             }
-            pages.set(i, arr);
-        }
-        for (ArrayList<String> a : pages){
-            sum += Integer.parseInt(a.get(a.size()/2));
+            //thanks isfar
+            for (String str : arr){
+                int count = 0;
+                for (int a = 0; a < drules.size(); a++){
+                    String[] rule = drules.get(a);
+                    if (str.equals(rule[0])){
+                        count++;
+                    }
+                    if (str.equals(rule[1])){
+                        count--;
+                    }
+                }
+                if (count == 0){
+                    sum += Integer.parseInt(str);
+                }
+            }
         }
         System.out.println(sum);
     }
